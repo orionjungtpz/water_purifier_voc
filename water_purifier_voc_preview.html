@@ -34,6 +34,20 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 #splashOverlay{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,0);transition:background .3s;}
 #splash>*:not(#splashOverlay){position:relative;z-index:1;}
 .splash-bottom{position:absolute;bottom:calc(var(--safe-bottom) + 48px);left:0;right:0;text-align:center;z-index:1;}
+#helpBtn{position:fixed;bottom:calc(var(--safe-bottom) + 20px);right:20px;width:44px;height:44px;border-radius:50%;background:#003087;color:#fff;font-size:20px;border:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);cursor:pointer;z-index:100;display:flex;align-items:center;justify-content:center;}
+#helpModal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.5);align-items:flex-end;justify-content:center;}
+#helpModal.open{display:flex;}
+#helpSheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px calc(var(--safe-bottom) + 24px);animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+#helpSheet h3{font-size:16px;font-weight:700;color:#003087;margin:0 0 16px;text-align:center;}
+.contact-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0;gap:12px;}
+.contact-row:last-child{border-bottom:none;}
+.contact-info{flex:1;}
+.contact-name{font-size:14px;font-weight:600;color:#1a1a1a;}
+.contact-dept{font-size:11px;color:#888;margin-top:2px;}
+.contact-tel{font-size:12px;color:#003087;margin-top:2px;font-weight:500;}
+.call-btn{padding:8px 14px;background:#003087;color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+.help-close{width:100%;padding:12px;background:#f5f5f5;border:none;border-radius:12px;font-size:14px;color:#555;cursor:pointer;margin-top:12px;font-family:inherit;}
 .splash-logo{width:72px;height:72px;background:rgba(255,255,255,.15);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;animation:splashPop .6s cubic-bezier(.34,1.56,.64,1);}
 .splash-title{color:#fff;font-size:22px;font-weight:700;animation:splashFade .8s ease .2s both;}
 .splash-sub{color:rgba(255,255,255,.8);font-size:17px;font-weight:500;letter-spacing:.5px;animation:splashFade .8s ease .4s both;}
@@ -96,8 +110,34 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .chip:active{transform:scale(.96);}
 .chip.selected{border-color:var(--accent);background:var(--light);color:var(--accent);font-weight:700;}
 .summary-box{margin-top:14px;background:var(--light);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--accent);font-weight:600;display:none;}
-.ice-tip{margin-top:10px;background:#fff8e1;border:1.5px solid #ffd54f;border-radius:10px;padding:12px 14px;font-size:12px;color:#795548;line-height:1.7;display:none;text-align:center;}
+.ice-tip{margin-top:10px;background:#fff8e1;border:1.5px solid #ffd54f;border-radius:12px;padding:14px 16px;font-size:12px;color:#795548;line-height:1.8;display:none;text-align:center;}
 .ice-tip b{color:#e65100;font-size:13px;}
+.tip-anim{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:10px;}
+.tip-btn{width:54px;height:54px;border-radius:14px;background:#e8edf5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative;overflow:hidden;}
+.tip-btn-icon{font-size:22px;line-height:1;}
+.tip-btn-label{font-size:9px;color:#555;font-weight:600;}
+/* 전원 점등 애니메이션 */
+.dot-row{display:flex;gap:3px;}
+.dot{width:6px;height:6px;border-radius:50%;background:#ccc;}
+.dot.on{background:#4fc3f7;animation:dotBlink 1.2s infinite;}
+.dot.on:nth-child(2){animation-delay:.2s;}
+.dot.on:nth-child(3){animation-delay:.4s;}
+@keyframes dotBlink{0%,100%{opacity:.3}50%{opacity:1}}
+/* 버튼 pulse 애니메이션 */
+.pulse-btn{width:44px;height:44px;border-radius:12px;border:2px solid #4fc3f7;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:20px;animation:pulseBtn 1.5s ease-in-out infinite;}
+@keyframes pulseBtn{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(79,195,247,.4)}50%{transform:scale(1.08);box-shadow:0 0 0 8px rgba(79,195,247,0)}}
+/* 물방울 애니메이션 */
+.drop{width:16px;height:20px;background:#4fc3f7;border-radius:50% 50% 40% 40%;animation:dropFall 1.2s ease-in infinite;}
+@keyframes dropFall{0%{transform:translateY(-10px);opacity:0}40%{opacity:1}100%{transform:translateY(16px);opacity:0}}
+/* 온도 웨이브 */
+.wave-wrap{display:flex;gap:2px;align-items:flex-end;height:24px;}
+.wave-bar{width:5px;border-radius:3px;animation:waveAnim 1s ease-in-out infinite;}
+.wave-bar:nth-child(2){animation-delay:.15s;}
+.wave-bar:nth-child(3){animation-delay:.3s;}
+@keyframes waveAnim{0%,100%{height:8px;opacity:.5}50%{height:22px;opacity:1}}
+/* 5초 카운트다운 */
+.count-btn{width:44px;height:44px;border-radius:12px;border:2px solid #ff7043;background:#fff3e0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#e64a19;animation:countPulse 1s linear infinite;}
+@keyframes countPulse{0%{box-shadow:0 0 0 0 rgba(255,112,67,.5)}100%{box-shadow:0 0 0 10px rgba(255,112,67,0)}}
 
 textarea{
   width:100%;padding:14px;border:1.5px solid var(--border);border-radius:10px;
@@ -218,13 +258,7 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
       <div class="section-title">접수 유형</div>
       <div class="chip-group" id="g1"></div>
       <div class="summary-box" id="summaryBox"></div>
-      <div class="ice-tip" id="iceTip">
-        <b>💡 잠깐! 얼음켜짐을<br>확인하셨나요?</b><br><br>
-        꺼져있다면<br>
-        <b>5초간 버튼을 눌러주세요.</b><br><br>
-        그래도 안 되면<br>
-        아래에서 접수해 주세요. 😊
-      </div>
+      <div class="ice-tip" id="iceTip"></div>
     </div>
 
     <div class="card" id="contentCard" style="display:none">
@@ -249,6 +283,18 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
 
     <button class="submit-btn" id="submitBtn" onclick="submitForm()">📤 익명으로 접수하기</button>
     <p class="privacy-note">본 시스템은 포스코인터내셔널 시설물 관리와 임직원 편의 제고를 위해 운영됩니다.<br>개인정보는 수집하지 않습니다.</p>
+  </div>
+</div>
+
+<!-- 도움말 버튼 -->
+<button id="helpBtn" onclick="openHelp()">❓</button>
+
+<!-- 도움말 모달 -->
+<div id="helpModal" onclick="if(event.target===this)closeHelp()">
+  <div id="helpSheet">
+    <h3>📞 담당자 안내</h3>
+    <div id="contactList"><div style="text-align:center;color:#aaa;padding:20px;">불러오는 중...</div></div>
+    <button class="help-close" onclick="closeHelp()">닫기</button>
   </div>
 </div>
 
@@ -381,6 +427,7 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //  🔧 설정값 — PA 플로우 완성 후 URL 2개 교체
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+var PA_CONTACT_URL = 'https://defaultb9501effd05e4bf18a87898d83f46c.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/1efbf2689b48408cbf1490c4761c67df/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rFmjSKR8hzWy4aIDZ0pXfk5AqsFbLUBAjPhoCcctXXU';
 var PA_CHECK_URL  = 'https://defaultb9501effd05e4bf18a87898d83f46c.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f73f5d78e46c44b182e666f4a88622ba/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=xhlNAKIVvrWQ-xtR7pvUKftXjHPFq0TsBbB5GVvF2Gw';
 var PA_SUBMIT_URL = 'https://defaultb9501effd05e4bf18a87898d83f46c.eb.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e1e00abf5854f75adc3da0da9a8347c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bRcg-BtHLi4Q-Z5yf_hcmu_Feh3m9OwSbBx7L0jPOaQ';
 
@@ -507,7 +554,7 @@ function initForm(){
   chips('g1', TREE);
   setContent(false); clearSummary();
   finalCat=''; s1=null;
-  document.getElementById('iceTip').style.display='none';
+  var t=document.getElementById('iceTip'); t.style.display='none'; t.innerHTML='';
 }
 function selectChip(el){
   document.querySelectorAll('#g1 .chip').forEach(function(c){c.classList.remove('selected');});
@@ -518,7 +565,69 @@ function selectChip(el){
   finalCat = s1.value;
   if(s1.isOther) setContent(true);
   showSummary(s1.label);
-  document.getElementById('iceTip').style.display = (s1.value === '얼음 안나옴') ? 'block' : 'none';
+  var tip = document.getElementById('iceTip');
+  var tipMap = {
+    '얼음 안나옴': {
+      html: '<div class="tip-anim">'
+          + '<div class="tip-btn"><div style="font-size:18px">🔷</div><div class="tip-btn-label">얼음켜짐</div></div>'
+          + '<div class="pulse-btn">5초</div>'
+          + '</div>'
+          + '💡 잠깐! <b>얼음켜짐</b>을 확인하셨나요?<br>'
+          + '꺼져있다면 <b>5초간 버튼</b>을 눌러주세요.<br>'
+          + '그래도 안 되면 아래에서 접수해 주세요. 😊'
+    },
+    '냉수 안나옴': {
+      html: '<div class="tip-anim">'
+          + '<div class="tip-btn"><div style="font-size:18px">❄️</div><div class="tip-btn-label">냉수켜짐</div></div>'
+          + '<div class="tip-btn"><div class="wave-wrap">'
+          + '<div class="wave-bar" style="background:#4fc3f7"></div>'
+          + '<div class="wave-bar" style="background:#4fc3f7"></div>'
+          + '<div class="wave-bar" style="background:#4fc3f7"></div>'
+          + '</div><div class="tip-btn-label">용량칸수</div></div>'
+          + '<div class="pulse-btn">5초</div>'
+          + '</div>'
+          + '💡 잠깐! <b>냉수켜짐</b>과 <b>용량칸수</b>를 확인하셨나요?<br>'
+          + '꺼져있다면 <b>5초간 버튼</b>을 눌러주세요.<br>'
+          + '그래도 안 되면 아래에서 접수해 주세요. 😊'
+    },
+    '온수 안나옴': {
+      html: '<div class="tip-anim">'
+          + '<div class="tip-btn"><div style="font-size:18px">♨️</div><div class="tip-btn-label">온수켜짐</div></div>'
+          + '<div class="tip-btn"><div class="wave-wrap">'
+          + '<div class="wave-bar" style="background:#ff7043"></div>'
+          + '<div class="wave-bar" style="background:#ff7043"></div>'
+          + '<div class="wave-bar" style="background:#ff7043"></div>'
+          + '</div><div class="tip-btn-label">용량칸수</div></div>'
+          + '<div class="pulse-btn" style="border-color:#ff7043;background:#fff3e0;color:#e64a19;">5초</div>'
+          + '</div>'
+          + '💡 잠깐! <b>온수켜짐</b>과 <b>용량칸수</b>를 확인하셨나요?<br>'
+          + '꺼져있다면 <b>5초간 버튼</b>을 눌러주세요.<br>'
+          + '그래도 안 되면 아래에서 접수해 주세요. 😊'
+    },
+    '전원 꺼짐': {
+      html: '<div class="tip-anim">'
+          + '<div class="tip-btn"><div class="dot-row"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div><div class="tip-btn-label">점등상태</div></div>'
+          + '<div class="tip-btn"><div style="font-size:20px">🔌</div><div class="tip-btn-label">전원코드</div></div>'
+          + '</div>'
+          + '💡 잠깐! <b>점등상태</b>를 확인하셨나요?<br>'
+          + '꺼져있다면 <b>전원코드</b>를 확인해 주세요.<br>'
+          + '그래도 안 되면 아래에서 접수해 주세요. 😊'
+    },
+    '소음 발생': {
+      html: '<div class="tip-anim">'
+          + '<div class="tip-btn"><div style="font-size:20px">🔊</div><div class="tip-btn-label">컴프레셔</div></div>'
+          + '</div>'
+          + '얼음 생성을 위해 간헐적으로<br>'
+          + '<b>컴프레셔 작동 소음</b>이 있을 수 있습니다.<br>'
+          + '평균 이상의 굉음 발생 시 아래에서 접수해 주세요. 😊'
+    }
+  };
+  if(tipMap[s1.value]){
+    tip.innerHTML = tipMap[s1.value].html;
+    tip.style.display = 'block';
+  } else {
+    tip.style.display = 'none';
+  }
 }
 function showSummary(txt){var el=document.getElementById('summaryBox');el.textContent='✅ '+txt;el.style.display='block';}
 function clearSummary(){document.getElementById('summaryBox').style.display='none';}
@@ -533,6 +642,35 @@ function updateSubmitBtn(){
   var email = document.getElementById('fbEmail').value.trim();
   var btn = document.getElementById('submitBtn');
   btn.textContent = email ? '📤 접수하기' : '📤 익명으로 접수하기';
+}
+function openHelp(){
+  document.getElementById('helpModal').classList.add('open');
+  var list = document.getElementById('contactList');
+  list.innerHTML = '<div style="text-align:center;color:#aaa;padding:20px;">불러오는 중...</div>';
+  fetch(PA_CONTACT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var rows = Array.isArray(data) ? data : (data.value || []);
+      if(!rows.length){list.innerHTML='<div style="text-align:center;color:#aaa;padding:20px;">담당자 정보를 불러올 수 없습니다.</div>';return;}
+      list.innerHTML = rows.map(function(r){
+        var tel = r['전화'] || '';
+        var type = r['전화유형'] || '내선';
+        var href = type === '휴대폰' ? 'tel:' + tel.replace(/-/g,'') : 'tel:' + tel;
+        var label = type === '휴대폰' ? tel : 'T.' + tel;
+        return '<div class="contact-row">'
+          + '<div class="contact-info">'
+          + '<div class="contact-name">' + (r['이름']||'') + ' ' + (r['직책']||'') + '</div>'
+          + '<div class="contact-dept">' + (r['부서']||'') + '</div>'
+          + '<div class="contact-tel">' + label + '</div>'
+          + '</div>'
+          + '<a class="call-btn" href="' + href + '">📞 전화</a>'
+          + '</div>';
+      }).join('');
+    })
+    .catch(function(){list.innerHTML='<div style="text-align:center;color:#aaa;padding:20px;">네트워크 오류</div>';});
+}
+function closeHelp(){
+  document.getElementById('helpModal').classList.remove('open');
 }
 function genReceipt(){
   var n=new Date();
