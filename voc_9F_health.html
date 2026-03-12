@@ -23,7 +23,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 #splash{
   position:fixed;inset:0;z-index:9999;
   background:var(--primary) url('./splash_bg.jpeg') center/cover no-repeat;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:20px;
   padding-top:calc(var(--safe-top) + 100px);
   padding-bottom:calc(var(--safe-bottom) + 20px);
   transition:opacity .5s ease,transform .5s ease;
@@ -31,12 +31,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
 }
 #splash.hide{opacity:0;transform:scale(1.03) translateZ(0);pointer-events:none;}
-#splashOverlay{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,0.45);transition:background .3s;}
+#splashOverlay{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,0);transition:background .3s;}
 #splash>*:not(#splashOverlay){position:relative;z-index:1;}
-.splash-bottom{position:absolute;bottom:calc(var(--safe-bottom) + 40px);left:0;right:0;text-align:center;z-index:1;}
+.splash-bottom{position:absolute;bottom:calc(var(--safe-bottom) + 48px);left:0;right:0;text-align:center;z-index:1;}
 .splash-logo{width:72px;height:72px;background:rgba(255,255,255,.15);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;animation:splashPop .6s cubic-bezier(.34,1.56,.64,1);}
 .splash-title{color:#fff;font-size:22px;font-weight:700;animation:splashFade .8s ease .2s both;}
-.splash-sub{color:rgba(255,255,255,.65);font-size:13px;animation:splashFade .8s ease .4s both;}
+.splash-sub{color:rgba(255,255,255,.8);font-size:17px;font-weight:500;letter-spacing:.5px;animation:splashFade .8s ease .4s both;}
 .splash-bar{width:160px;height:3px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;margin-top:8px;animation:splashFade .8s ease .4s both;}
 .splash-bar-inner{height:100%;background:#fff;border-radius:2px;animation:splashProgress 2.3s ease forwards;}
 @keyframes splashPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
@@ -219,11 +219,9 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
       <div class="chip-group" id="g1"></div>
       <div class="summary-box" id="summaryBox"></div>
       <div class="ice-tip" id="iceTip">
-        <b>💡 잠깐! 얼음켜짐을<br>확인하셨나요?</b><br><br>
-        꺼져있다면<br>
-        <b>5초간 버튼을 눌러주세요.</b><br><br>
-        그래도 안 되면<br>
-        아래에서 접수해 주세요. 😊
+        💡 잠깐! 얼음켜짐을 확인하셨나요?<br>
+        꺼져있다면 <b>5초간 버튼</b>을 눌러주세요.<br>
+        그래도 안 되면 아래에서 접수해 주세요. 😊
       </div>
     </div>
 
