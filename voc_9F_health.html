@@ -515,14 +515,14 @@ function openHelp(){
       var rows = Array.isArray(data) ? data : (data.value || []);
       if(!rows.length){list.innerHTML='<div style="text-align:center;color:#aaa;padding:20px;">담당자 정보를 불러올 수 없습니다.</div>';return;}
       list.innerHTML = rows.map(function(r){
-        var tel = r['전화'] || '';
-        var type = r['전화유형'] || '내선';
+        var tel = r['content'] || '';
+        var type = r['reply'] || '내선';
         var href = type === '휴대폰' ? 'tel:' + tel.replace(/-/g,'') : 'tel:' + tel;
-        var label = type === '휴대폰' ? tel : 'T.' + tel;
+        var label = type === '휴대폰' ? tel : 'T.' + tel.replace('02-759-','');
         return '<div class="contact-row">'
           + '<div class="contact-info">'
-          + '<div class="contact-name">' + (r['이름']||'') + ' ' + (r['직책']||'') + '</div>'
-          + '<div class="contact-dept">' + (r['부서']||'') + '</div>'
+          + '<div class="contact-name">' + (r['submittedAt']||'') + ' ' + (r['location']||'') + '</div>'
+          + '<div class="contact-dept">' + (r['Title']||'') + ' · ' + (r['category']||'') + '</div>'
           + '<div class="contact-tel">' + label + '</div>'
           + '</div>'
           + '<a class="call-btn" href="' + href + '">📞 전화</a>'
