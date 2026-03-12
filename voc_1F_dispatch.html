@@ -22,15 +22,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 /* ── 스플래시 ── */
 #splash{
   position:fixed;inset:0;z-index:9999;
-  background:var(--primary) url('./splash_bg.jpeg') center/cover no-repeat;
+  background:#fff url('./splash_bg.jpeg') center/cover no-repeat;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:20px;
   padding-top:calc(var(--safe-top) + 100px);
   padding-bottom:calc(var(--safe-bottom) + 20px);
-  transition:opacity .5s ease,transform .5s ease;
+  transition:opacity .6s ease;
   will-change:opacity,transform;-webkit-transform:translateZ(0);transform:translateZ(0);
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
 }
-#splash.hide{opacity:0;transform:scale(1.03) translateZ(0);pointer-events:none;}
+#splash.hide{opacity:0;transform:none;pointer-events:none;}
 #splashOverlay{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,0);transition:background .3s;}
 #splash>*:not(#splashOverlay){position:relative;z-index:1;}
 
@@ -586,7 +586,7 @@ async function submitForm(){
         if(checkData.duplicate === true){
           // 중복 → 모달 표시
           document.getElementById('dupNotice').textContent =
-            '기존 접수번호: ' + (checkData.receiptNum || '확인 불가') + '\n담당자가 처리 중이니 잠시만 기다려 주세요.';
+            '담당자가 처리 중이니 잠시만 기다려 주세요.';
           document.getElementById('dupModal').classList.add('show');
           btn.disabled=false; btn.textContent='📤 익명으로 접수하기';
           return;
