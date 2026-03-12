@@ -519,13 +519,18 @@ function openHelp(){
         var type = r['reply'] || '내선';
         var href = type === '휴대폰' ? 'tel:' + tel.replace(/-/g,'') : 'tel:' + tel;
         var label = type === '휴대폰' ? tel : 'T.' + tel.replace('02-759-','');
+        var email = r['이메일'] || r['email'] || '';
+        var smsNum = type === '휴대폰' ? tel : '';
+        var btns = '<a class="call-btn" href="' + href + '">📞</a>';
+        if(smsNum) btns += '<a class="call-btn" style="background:#25D366;" href="sms:' + smsNum.replace(/-/g,'') + '">💬</a>';
+        if(email) btns += '<a class="call-btn" style="background:#5059C9;" href="msteams://teams.microsoft.com/l/chat/0/0?users=' + email + '">🟦</a>';
         return '<div class="contact-row">'
           + '<div class="contact-info">'
           + '<div class="contact-name">' + (r['submittedAt']||'') + ' ' + (r['location']||'') + '</div>'
           + '<div class="contact-dept">' + (r['Title']||'') + ' · ' + (r['category']||'') + '</div>'
           + '<div class="contact-tel">' + label + '</div>'
           + '</div>'
-          + '<a class="call-btn" href="' + href + '">📞 전화</a>'
+          + '<div style="display:flex;gap:6px;">' + btns + '</div>'
           + '</div>';
       }).join('');
     })
