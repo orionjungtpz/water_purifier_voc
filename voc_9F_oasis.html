@@ -34,7 +34,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 #splashOverlay{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,0);transition:background .3s;}
 #splash>*:not(#splashOverlay){position:relative;z-index:1;}
 .splash-bottom{position:absolute;bottom:calc(var(--safe-bottom) + 48px);left:0;right:0;text-align:center;z-index:1;}
-#helpBtn{position:fixed;bottom:calc(var(--safe-bottom) + 20px);right:20px;width:44px;height:44px;border-radius:50%;background:#003087;color:#fff;font-size:20px;border:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);cursor:pointer;z-index:100;display:flex;align-items:center;justify-content:center;}
+#helpBtn{position:fixed;top:calc(var(--safe-top) + 12px);right:16px;width:48px;height:48px;border-radius:50%;font-size:22px;background:transparent;color:#fff;font-size:20px;border:none;box-shadow:none;cursor:pointer;z-index:100;display:flex;align-items:center;justify-content:center;}
 #helpModal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.5);align-items:flex-end;justify-content:center;}
 #helpModal.open{display:flex;}
 #helpSheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px calc(var(--safe-bottom) + 24px);animation:slideUp .3s ease;}
@@ -46,7 +46,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .contact-name{font-size:14px;font-weight:600;color:#1a1a1a;}
 .contact-dept{font-size:11px;color:#888;margin-top:2px;}
 .contact-tel{font-size:12px;color:#003087;margin-top:2px;font-weight:500;}
-.call-btn{padding:8px 14px;background:#003087;color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+.call-btn{padding:8px 14px;background:transparent;color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
 .help-close{width:100%;padding:12px;background:#f5f5f5;border:none;border-radius:12px;font-size:14px;color:#555;cursor:pointer;margin-top:12px;font-family:inherit;}
 .splash-logo{width:72px;height:72px;background:rgba(255,255,255,.15);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;animation:splashPop .6s cubic-bezier(.34,1.56,.64,1);}
 .splash-title{color:#fff;font-size:22px;font-weight:700;animation:splashFade .8s ease .2s both;}
@@ -187,51 +187,10 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
 .dup-btn-force{background:var(--warn);color:#fff;}
 
 /* ── 설정 버튼 ── */
-#adminBtn{
-  position:fixed;bottom:calc(18px + var(--safe-bottom));right:18px;z-index:200;
-  width:40px;height:40px;background:rgba(255,255,255,.7);border:1px solid var(--border);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;-webkit-appearance:none;box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
-#adminBtn svg{width:18px;height:18px;}
 
-/* ── 관리자 모달 ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;align-items:flex-end;justify-content:center;}
-.modal-overlay.show{display:flex;}
-.modal-sheet{
-  background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;
-  padding:20px 20px calc(24px + var(--safe-bottom));
-  animation:slideUp .3s cubic-bezier(.4,0,.2,1);max-height:90vh;overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:none}}
-.modal-handle{width:40px;height:4px;background:#e0e7f3;border-radius:2px;margin:0 auto 20px;}
-.modal-title{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:20px;}
-.pw-dots{display:flex;gap:14px;justify-content:center;margin:20px 0 24px;}
-.pw-dot{width:14px;height:14px;border-radius:50%;background:#e0e7f3;transition:background .15s;}
-.pw-dot.filled{background:var(--primary);}
-.pin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.pin-btn{padding:16px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-size:18px;font-weight:600;color:var(--text);cursor:pointer;text-align:center;transition:all .15s;-webkit-appearance:none;}
-.pin-btn:active{background:var(--light);border-color:var(--accent);}
-.pin-error{color:#e74c3c;font-size:12px;text-align:center;margin-top:10px;min-height:18px;}
-#adminScreen{display:none;}
-.setting-group{margin-bottom:20px;}
-.setting-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase;}
-.setting-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);background:#fafbfe;outline:none;-webkit-appearance:none;}
-.setting-input:focus{border-color:var(--accent);}
-.setting-select{width:100%;padding:11px 32px 11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);background:#fafbfe;outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
-.range-wrap{display:flex;align-items:center;gap:10px;}
-.range-wrap input[type=range]{flex:1;-webkit-appearance:none;height:4px;background:var(--border);border-radius:2px;outline:none;}
-.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--primary);cursor:pointer;}
-.range-val{font-size:13px;font-weight:700;color:var(--accent);min-width:40px;text-align:right;}
-.align-btns{display:flex;gap:8px;}
-.align-btn{flex:1;padding:11px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:13px;color:var(--muted);cursor:pointer;text-align:center;-webkit-appearance:none;transition:all .15s;}
-.align-btn.active{background:var(--light);border-color:var(--accent);color:var(--accent);font-weight:700;}
-.preview-box{background:var(--light);border-radius:10px;padding:14px;font-size:14px;letter-spacing:0px;text-align:left;color:var(--text);line-height:1.6;}
-.bg-tab{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:13px;color:var(--muted);cursor:pointer;-webkit-appearance:none;transition:all .15s;}
-.bg-tab.active{background:var(--light);border-color:var(--accent);color:var(--accent);font-weight:700;}
-.admin-save-btn{width:100%;padding:15px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;-webkit-appearance:none;}
-.admin-reset-btn{width:100%;padding:12px;background:#fff;color:var(--muted);border:1.5px solid var(--border);border-radius:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer;margin-top:8px;-webkit-appearance:none;}
+
+
+
 </style>
 </head>
 <body>
@@ -287,7 +246,7 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
 </div>
 
 <!-- 도움말 버튼 -->
-<button id="helpBtn" onclick="openHelp()">❓</button>
+<button id="helpBtn" onclick="openHelp()">☎️</button>
 
 <!-- 도움말 모달 -->
 <div id="helpModal" onclick="if(event.target===this)closeHelp()">
@@ -297,14 +256,6 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
     <button class="help-close" onclick="closeHelp()">닫기</button>
   </div>
 </div>
-
-<!-- 설정 버튼 -->
-<button id="adminBtn" onclick="openAdmin()" aria-label="관리자 설정">
-  <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg>
-</button>
 
 <!-- 접수 완료 오버레이 -->
 <div class="overlay" id="doneOverlay">
@@ -330,95 +281,6 @@ textarea.required-empty{border-color:#e74c3c;background:#fff5f5;}
     <div class="dup-btn-row">
       <button class="dup-btn dup-btn-cancel" onclick="closeDupModal()">취소</button>
       <button class="dup-btn dup-btn-force" onclick="forceSubmit()">그래도 접수</button>
-    </div>
-  </div>
-</div>
-
-<!-- 관리자 모달 -->
-<div class="modal-overlay" id="adminModal" onclick="outsideClose(event)">
-  <div class="modal-sheet" id="modalSheet">
-    <div class="modal-handle"></div>
-    <div id="pwScreen">
-      <div class="modal-title">🔐 관리자 모드</div>
-      <div class="pw-dots">
-        <div class="pw-dot" id="d0"></div><div class="pw-dot" id="d1"></div>
-        <div class="pw-dot" id="d2"></div><div class="pw-dot" id="d3"></div>
-      </div>
-      <div class="pin-grid">
-        <button class="pin-btn" onclick="pinInput('1')">1</button>
-        <button class="pin-btn" onclick="pinInput('2')">2</button>
-        <button class="pin-btn" onclick="pinInput('3')">3</button>
-        <button class="pin-btn" onclick="pinInput('4')">4</button>
-        <button class="pin-btn" onclick="pinInput('5')">5</button>
-        <button class="pin-btn" onclick="pinInput('6')">6</button>
-        <button class="pin-btn" onclick="pinInput('7')">7</button>
-        <button class="pin-btn" onclick="pinInput('8')">8</button>
-        <button class="pin-btn" onclick="pinInput('9')">9</button>
-        <button class="pin-btn" onclick="pinClear()" style="font-size:13px;color:var(--muted)">지우기</button>
-        <button class="pin-btn" onclick="pinInput('0')">0</button>
-        <button class="pin-btn" onclick="closeAdmin()" style="font-size:13px;color:var(--muted)">취소</button>
-      </div>
-      <div class="pin-error" id="pinError"></div>
-    </div>
-    <div id="adminScreen">
-      <div class="modal-title">⚙️ 화면 설정</div>
-      <div class="setting-group">
-        <div class="setting-label">배경 이미지</div>
-        <div style="display:flex;gap:6px;margin-bottom:10px;">
-          <button class="bg-tab active" id="tabUrl" onclick="switchBgTab('url')">🔗 URL</button>
-          <button class="bg-tab" id="tabFile" onclick="switchBgTab('file')">📁 파일 업로드</button>
-        </div>
-        <div id="bgUrlWrap">
-          <input class="setting-input" id="bgUrl" type="url" placeholder="https://example.com/image.jpg" oninput="onBgChange()">
-        </div>
-        <div id="bgFileWrap" style="display:none">
-          <label style="display:flex;align-items:center;justify-content:center;gap:8px;padding:20px;border:2px dashed var(--border);border-radius:10px;cursor:pointer;font-size:14px;color:var(--muted);background:#fafbfe;">
-            <span style="font-size:24px;">🖼️</span>
-            <span id="fileLabelText">JPG, JPEG, PNG, GIF, WEBP 선택</span>
-            <input type="file" id="bgFile" accept=".jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="onFileSelect(this)">
-          </label>
-          <div id="filePreviewWrap" style="display:none;margin-top:8px;position:relative;">
-            <img id="filePreview" style="width:100%;height:100px;object-fit:cover;border-radius:10px;display:block;">
-            <button onclick="clearFile()" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:24px;height:24px;font-size:13px;cursor:pointer;line-height:1;">✕</button>
-          </div>
-        </div>
-      </div>
-      <div class="setting-group" id="dimGroup" style="display:none">
-        <div class="setting-label">배경 어둡기</div>
-        <div class="range-wrap">
-          <input type="range" id="bgDim" min="0" max="80" value="30" oninput="updateDimVal()">
-          <span class="range-val" id="dimVal">30%</span>
-        </div>
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">글씨체</div>
-        <select class="setting-select" id="fontSel" onchange="updatePreview()">
-          <option value="Noto Sans KR">Noto Sans KR (기본)</option>
-          <option value="Noto Serif KR">Noto Serif KR (명조)</option>
-          <option value="IBM Plex Sans KR">IBM Plex Sans KR</option>
-        </select>
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">글씨 크기</div>
-        <div class="range-wrap">
-          <input type="range" id="fontSz" min="11" max="18" value="14" oninput="updatePreview()">
-          <span class="range-val" id="fontSzVal">14px</span>
-        </div>
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">스플래시 제목</div>
-        <input class="setting-input" id="splashTitleInput" type="text" placeholder="포스코인터내셔널" maxlength="30">
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">스플래시 부제목</div>
-        <input class="setting-input" id="splashSubInput" type="text" placeholder="행정지원그룹" maxlength="40">
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">미리보기</div>
-        <div class="preview-box" id="previewBox">포스코인터내셔널 시설물 고객의 소리입니다.</div>
-      </div>
-      <button class="admin-save-btn" onclick="saveSettings()">✅ 설정 저장 및 적용</button>
-      <button class="admin-reset-btn" onclick="resetSettings()">↩ 기본값으로 초기화</button>
     </div>
   </div>
 </div>
@@ -768,7 +630,7 @@ function closeSuccess(){
 }
 
 // ── 관리자 PIN ──
-function openAdmin(){pinBuf='';updateDots();document.getElementById('pinError').textContent='';document.getElementById('pwScreen').style.display='block';document.getElementById('adminScreen').style.display='none';document.getElementById('adminModal').classList.add('show');}
+
 function closeAdmin(){document.getElementById('adminModal').classList.remove('show');pinBuf='';}
 function outsideClose(e){if(e.target===document.getElementById('adminModal'))closeAdmin();}
 function pinInput(v){
